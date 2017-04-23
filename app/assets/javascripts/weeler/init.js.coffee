@@ -22,5 +22,5 @@ app = {
     $('.datetimepicker').datetimepicker();
 }
 
-$(document).ready () ->
+$(document).on 'turbolinks:load', ->
   app.boot()
