@@ -4,6 +4,8 @@ require "weeler/deprecator"
 require 'logger'
 require "rails"
 
+require 'cache_sync/file'
+
 require "weeler/engine"
 
 # 3rd party
@@ -65,6 +67,9 @@ module Weeler
 
   mattr_accessor :mount_location_namespace
   @@mount_location_namespace = "weeler"
+
+  mattr_accessor :cache_sync
+  @@cache_sync = CacheSync::File.new
 
   def self.setup
     yield self

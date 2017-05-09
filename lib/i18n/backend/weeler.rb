@@ -22,7 +22,7 @@ module I18n
     # * Dedupe - you should use if you find duplicated keys
     #
     class Weeler
-      attr_accessor :i18n_cache
+      attr_accessor :i18n_cache, :cache_sync
 
       PLURAL_KEYS = ["zero", "one", "other"]
 
@@ -57,7 +57,7 @@ module I18n
             end
           end
 
-          i18n_cache.write('UPDATED_AT', Settings.i18n_updated_at) if ActiveRecord::Base.connection.data_source_exists?('settings')
+          cache_sync.write Settings.i18n_updated_at if ActiveRecord::Base.connection.data_source_exists?('settings')
         end
 
         protected
@@ -72,7 +72,7 @@ module I18n
 
         def lookup_in_cache locale, key, scope = [], options = {}
           # reload cache if cache timestamp differs from last translations update
-          reload_cache if ((!ActiveRecord::Base.connection.data_source_exists?('settings')) || i18n_cache.read('UPDATED_AT') != Settings.i18n_updated_at)
+          reload_cache if ((!ActiveRecord::Base.connection.data_source_exists?('settings')) || cache_sync.version != Settings.i18n_updated_at)
 
           # log locale/key usage for statistics
           if Settings.log_key_usage == 'true'
