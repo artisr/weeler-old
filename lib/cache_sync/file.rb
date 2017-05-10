@@ -1,13 +1,15 @@
-module CacheSync
-  class File
+require 'cache_sync/cache'
 
-    def version
+module CacheSync
+  class File < Cache
+
+    def read_version
       ::File.read(Rails.root.join('public', 'system', 'weeler-cache-sync'))
     rescue
       nil
     end
 
-    def write version
+    def write_version version
       ::File.write(Rails.root.join('public', 'system', 'weeler-cache-sync'), version)
     end
 
