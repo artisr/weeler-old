@@ -7,8 +7,12 @@ module CacheSync
     @version = nil
 
     def version
-      return nil if cache_expired?
-      @version ||= read_version
+      if @version.nil? || cache_expired?
+        @version = read_version
+        set_cache_expiration
+      end
+
+      @version
     end
 
     def write version
