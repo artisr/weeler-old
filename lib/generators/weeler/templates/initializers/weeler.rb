@@ -6,6 +6,12 @@ Weeler.setup do |config|
   # config.create_missing_translations = true # Create translation in database if it missing
   # config.empty_translation_acts_like_missing = true # Empty translations by default is treat like missing translation.
 
+  # Cache mechanism
+  # config.cache_sync = CacheSync::Settings.new
+  # available options are:
+  #   CacheSync::Settings.new
+  #   CacheSync::File.new
+
   # Require user method weeler use in before filter. (e.g. require_user)
   #
   # config.required_user_method = nil

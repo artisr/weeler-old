@@ -5,6 +5,7 @@ require 'logger'
 require "rails"
 
 require 'cache_sync/file'
+require 'cache_sync/settings'
 
 require "weeler/engine"
 
@@ -69,7 +70,7 @@ module Weeler
   @@mount_location_namespace = "weeler"
 
   mattr_accessor :cache_sync
-  @@cache_sync = CacheSync::File.new
+  @@cache_sync = CacheSync::Settings.new
 
   def self.setup
     yield self

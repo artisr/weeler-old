@@ -1,7 +1,7 @@
 module CacheSync
   class Cache
 
-    MAX_AGE = 20
+    MAX_AGE = 60
 
     @age = nil
     @version = nil
