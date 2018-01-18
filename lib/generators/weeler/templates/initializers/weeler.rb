@@ -6,11 +6,15 @@ Weeler.setup do |config|
   # config.create_missing_translations = true # Create translation in database if it missing
   # config.empty_translation_acts_like_missing = true # Empty translations by default is treat like missing translation.
 
-  # Cache mechanism
+  # Cache Sync mechanism
+  # By default its set to:
+  #
   # config.cache_sync = CacheSync::Settings.new
+  #
   # available options are:
-  #   CacheSync::Settings.new
-  #   CacheSync::File.new
+  # => CacheSync::Settings.new     # Needs setting migration to be run. For legacy support only - doesn't sync caches accross instances.
+  # => CacheSync::File.new         # Needs Rails.root.join('public', 'system') folder to be present. Folder needs to be shared accross instances.
+  # => CacheSync::Redis.new        # Needs redis server. Redis server needs to be shared accross instances.
 
   # Require user method weeler use in before filter. (e.g. require_user)
   #

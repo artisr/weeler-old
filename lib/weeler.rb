@@ -6,6 +6,7 @@ require "rails"
 
 require 'cache_sync/file'
 require 'cache_sync/settings'
+require 'cache_sync/redis'
 
 require "weeler/engine"
 
