@@ -1,41 +1,31 @@
 module CacheSync
   class Cache
 
-    MAX_AGE = 60
-
-    @age = nil
-    @version = nil
-
     def version
-      if @version.nil? || cache_expired?
-        @version = read_version
-        set_cache_expiration
-      end
-
-      @version
+      read_version
     end
 
     def write version
       write_version version
-      set_cache_expiration
     end
 
-    private
+    def implemented?
+      cache_set_up
+    end
+
+    protected
 
     def read_version
       puts 'You need to implement `version` method on your cache sync'
     end
 
     def write_version version
-      puts 'You need to implement `write`method on your cache sync'
+      puts 'You need to implement `write` method on your cache sync'
     end
 
-    def cache_expired?
-      Time.now.to_i - @age.to_i > MAX_AGE
-    end
-
-    def set_cache_expiration
-      @age = Time.now.to_i
+    def cache_set_up
+      puts 'You need to implement `cache_set_up` method on your cache sync'
+      return false
     end
 
   end

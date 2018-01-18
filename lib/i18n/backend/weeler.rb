@@ -57,7 +57,11 @@ module I18n
             end
           end
 
-          cache_sync.write Settings.i18n_updated_at if ActiveRecord::Base.connection.data_source_exists?('settings')
+          if cache_sync.implemented?
+            cache_sync_time = Time.now.to_f
+            i18n_cache.write('UPDATED_AT', cache_sync_time)
+            cache_sync.write cache_sync_time
+          end
         end
 
         protected
@@ -72,7 +76,7 @@ module I18n
 
         def lookup_in_cache locale, key, scope = [], options = {}
           # reload cache if cache timestamp differs from last translations update
-          reload_cache if ((!ActiveRecord::Base.connection.data_source_exists?('settings')) || cache_sync.version.to_s != Settings.i18n_updated_at.to_s)
+          reload_cache if !cache_sync.implemented? || i18n_cache.read('UPDATED_AT') != cache_sync.version
 
           # log locale/key usage for statistics
           if Settings.log_key_usage == 'true'

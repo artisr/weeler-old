@@ -19,7 +19,7 @@ module Weeler
       @translation = I18n::Backend::Weeler::Translation.new(translation_params)
 
       if @translation.save
-        Settings.i18n_updated_at = Time.now
+        Weeler.cache_sync.write Time.now.to_f
         redirect_to ({ action: :edit, id: @translation }), flash: { success: "Translation saved." }
       else
         flash.now[:error] = "Errors in saving."
@@ -31,8 +31,7 @@ module Weeler
       @translation = I18n::Backend::Weeler::Translation.find(params[:id])
 
       if @translation.update_attributes(translation_params)
-        Settings.i18n_updated_at = Time.now
-
+        Weeler.cache_sync.write Time.now.to_f
         redirect_to ({ action: :edit, id: @translation }), flash: { success: "Translation updated." }
       else
         flash.now[:error] = "Errors in updating."
@@ -44,7 +43,7 @@ module Weeler
       @translation = I18n::Backend::Weeler::Translation.find(params[:id])
       @translation.destroy
 
-      Settings.i18n_updated_at = Time.now
+      Weeler.cache_sync.write Time.now.to_f
 
       redirect_to ({ action: :index }), flash: {success: "Translation succesfully removed."}
     end
@@ -76,7 +75,7 @@ module Weeler
       if params[:file].present?
         I18n::Backend::Weeler::Translation.import params[:file]
 
-        Settings.i18n_updated_at = Time.now
+        Weeler.cache_sync.write Time.now.to_f
 
         redirect_to ({ action: :index }), flash: {success: "Translations succesfully imported."}
       else

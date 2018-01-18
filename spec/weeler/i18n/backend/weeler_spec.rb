@@ -26,9 +26,9 @@ describe I18n::Backend::Weeler do
     end
 
     it "writes last translations update timestamp to cache" do
-      Settings.i18n_updated_at = Time.now
+      Weeler.cache_sync.write Time.now.to_f
       I18n.backend.backends[0].reload_cache
-      expect(Weeler.i18n_cache.read('UPDATED_AT')).to eq(Settings.i18n_updated_at)
+      expect(Weeler.i18n_cache.read('UPDATED_AT')).to eq(Weeler.cache_sync.version)
     end
 
     it "loads all translated data to cache" do
@@ -152,7 +152,7 @@ describe I18n::Backend::Weeler do
     context "cache" do
       context "differs from settings timestamp" do
         before do
-          Settings.i18n_updated_at = Time.now
+          Weeler.cache_sync.write Time.now.to_f
         end
 
         it "reloads cache" do
@@ -163,7 +163,7 @@ describe I18n::Backend::Weeler do
 
       context "is same as updates timestamp" do
         before do
-          Weeler.i18n_cache.write('UPDATED_AT', Settings.i18n_updated_at)
+          Weeler.i18n_cache.write('UPDATED_AT', Weeler.cache_sync.version)
         end
 
         it "does not reload cache" do
@@ -306,7 +306,7 @@ describe I18n::Backend::Weeler do
         expect(I18n.backend.backends[0]).to receive(:dump_key_usage)
         I18n.t("random.key")
       end
-      
+
     end
 
   end

@@ -11,5 +11,9 @@ module CacheSync
       ::Settings.i18n_updated_at = version
     end
 
+    def cache_set_up
+      ActiveRecord::Base.connection.data_source_exists?('settings')
+    end
+
   end
 end
