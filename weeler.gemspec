@@ -25,7 +25,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'kaminari'
   spec.add_dependency 'haml'
-  spec.add_dependency 'jquery-turbolinks'
   spec.add_dependency 'jquery-ui-rails'
 
   spec.add_dependency 'axlsx'
