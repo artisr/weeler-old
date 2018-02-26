@@ -1,7 +1,6 @@
 #= require jquery
 #= require jquery-ui
 #= require jquery_ujs
-#= require turbolinks
 #= require ./vendor/moment
 #= require_tree ./vendor
 #= require_tree ./lib
@@ -21,5 +20,5 @@ app = {
     $('.datetimepicker').datetimepicker();
 }
 
-$(document).on 'turbolinks:load', ->
+$(document).on 'ready', ->
   app.boot()
