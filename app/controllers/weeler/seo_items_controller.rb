@@ -11,9 +11,8 @@ module Weeler
     end
 
     def update
-      params[:translations].each do |translation|
-        id, value = translation.first, translation.last
-        translation = I18n::Backend::Weeler::Translation.find(id)
+      params[:translations].each do |key, value|
+        translation = I18n::Backend::Weeler::Translation.find(key)
         translation.value = value
         translation.save
       end
