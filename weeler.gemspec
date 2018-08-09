@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Weeler::VERSION::STRING
   spec.authors       = ['Artūrs Braučs',  'Artis Raugulis']
   spec.email         = ['arturs.braucs@gmail.com', 'artis@devart.lv']
-  spec.description   = %q{CMS for weby.lv projects.}
-  spec.summary       = %q{CMS for weby.lv projects.}
+  spec.description   = %q{CMS for devart.lv projects.}
+  spec.summary       = %q{CMS for devart.lv projects.}
   spec.homepage      = ''
   spec.license       = 'MIT'
 
@@ -28,11 +28,11 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'jquery-ui-rails'
 
   spec.add_dependency 'axlsx'
-  spec.add_dependency 'roo', '~>1.13.2'
-  spec.add_dependency 'rubyzip', '~>0.9'
+  spec.add_dependency 'roo'
+  spec.add_dependency 'rubyzip'
   spec.add_dependency 'redis'
 
-  spec.add_development_dependency 'bundler', '~> 1.3'
+  spec.add_development_dependency 'bundler', '~> 1.6'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'rspec-rails'
@@ -42,7 +42,7 @@ Gem::Specification.new do |spec|
   if RUBY_PLATFORM == 'java'
     spec.add_development_dependency 'activerecord-jdbcpostgresql-adapter'
   else
-    spec.add_development_dependency 'pg', '~> 0.21'
+    spec.add_development_dependency 'pg', '~> 1'
   end
   spec.add_development_dependency 'database_cleaner'
   spec.add_development_dependency 'shoulda-matchers'
