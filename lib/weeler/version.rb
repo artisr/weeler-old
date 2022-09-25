@@ -3,7 +3,7 @@ module Weeler
     MAJOR = 1
     MINOR = 8
     TINY  = 8
-    PRE   = nil
+    PRE   = 2
     STRING = [MAJOR, MINOR, TINY, PRE].compact.join(".")
   end
 end

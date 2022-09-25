@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'haml'
   spec.add_dependency 'jquery-ui-rails'
 
-  spec.add_dependency 'axlsx'
+  spec.add_dependency 'caxlsx'
   spec.add_dependency 'roo'
   spec.add_dependency 'rubyzip'
   spec.add_dependency 'redis'
